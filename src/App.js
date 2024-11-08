@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import WsSettings from "./WsSettings";
 import WebSocketWrapper from "./WebSocketWrapper";
 import Messages from "./Messages";
 import MessagesList from "./MessagesList";
+import { DefaultButton } from "pivotal-ui/react/buttons";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends React.Component {
     var ws = new WebSocketWrapper();
     ws.onDisconnect = this.onSocketDisconnect;
     ws.onMessage = this.onMessage;
-    this.state = { ws: ws, messages: new Messages() };
+    this.state = { settingsVisible: false, ws: ws, messages: new Messages() };
   }
   onMessage(v) {
     console.log("Hey ", v);
@@ -45,24 +46,34 @@ class App extends React.Component {
     this.setState({ ws: ws.disconnect() });
   }
 
+  componentDidMount() {
+  	this.onConnect();
+  }
+
   render() {
     const ws = this.state.ws;
     const messages = this.state.messages;
+	
+	const toggleVisibility = () => this.setState({settingsVisible: !this.state.settingsVisible});
+
     return (
       <div className="App">
         <div className="App-Container">
-          <header className="header">
-            <h1>Textractor webui</h1>
-          </header>
           <div className="App-header">
+		  	<DefaultButton onClick={toggleVisibility} onDark>
+				{this.state.settingsVisible ? 'Hide' : 'Show'} settings
+			</DefaultButton>
+
+			{this.state.settingsVisible && (
             <WsSettings
               ws={ws}
               onUrlChange={this.onUrlChange}
               onConnect={this.onConnect}
               onDisconnect={this.onDisconnect}
             />
-            <MessagesList data={messages} />
+			)}
           </div>
+          <MessagesList data={messages} />
         </div>
       </div>
     );

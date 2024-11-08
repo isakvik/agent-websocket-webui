@@ -30,12 +30,12 @@ class MessagesList extends React.Component {
     const items = [...Array(data.length()).keys()].map(i => (
       //TODO: if first elelemtn add class (or toggle class)
       <Flipped key={i} flipId={data.getReverse(i).hashCode()}>
-        <div className="message shadow">{data.getReverse(i)}</div>
+        <div className="message shadow">{JSON.parse(data.getReverse(i)).sentence}</div>
       </Flipped>
     ));
     return (
       <div className="messagesList">
-        <h1>Messages</h1>
+        <h2>Text log</h2>
         <div className="messagesListContainer">
           <Flipper
             flipKey={firstElement ? firstElement.hashCode() : "".hashCode()}

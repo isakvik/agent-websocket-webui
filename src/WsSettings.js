@@ -26,7 +26,6 @@ class WsSettings extends React.Component {
     const ws = this.props.ws;
     return (
       <div className="WsSettings">
-        <h3>Settings</h3>
         <Input
           placeholder="wss://127.0.0.1:6677"
           value={ws.url}

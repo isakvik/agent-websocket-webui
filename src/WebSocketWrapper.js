@@ -1,4 +1,4 @@
-const DEFAULT_URL = "ws://127.0.0.1:6677";
+const DEFAULT_URL = "ws://127.0.0.1:9001";
 
 class WebSocketWrapper {
   constructor() {
