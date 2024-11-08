@@ -1,8 +1,8 @@
-= textractor_websocket WebUI
+= agent-websocket web UI
 
 == Summary
 
-Fork from https://github.com/sadolit/textractor-websocket-webui[textractor-websocket-webui] that integrates with https://github.com/0xDC00/agent[agent]
+Fork from https://github.com/sadolit/textractor-websocket-webui[textractor-websocket-webui] that integrates with https://github.com/0xDC00/agent[agent].
 
 == Build
 
